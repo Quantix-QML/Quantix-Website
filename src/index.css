@@ -1,0 +1,363 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-electric: #0052ff;
+    --color-lime: #a3ff00;
+  }
+
+  body {
+    background-color: #0052ff;
+    color: #0f172a;
+    font-family: 'Satoshi', system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar themed from electric blue & neon lime */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0052ff;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #06339e;
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #a3ff00;
+  }
+
+  /* Themed caret and focus ring */
+  input, textarea, select {
+    caret-color: #0052ff;
+  }
+
+  :focus-visible {
+    outline: 2px solid #a3ff00;
+    outline-offset: 2px;
+  }
+
+  .tabular-nums {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Blueprint Grid Background matching the reference screenshot */
+.blueprint-grid {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: right top;
+}
+
+/* White canvas with subtle Electric Blue grid lines */
+.blueprint-grid-blue {
+  background-image: 
+    linear-gradient(to right, rgba(0, 82, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 82, 255, 0.08) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: right top;
+}
+
+.blueprint-grid-subtle {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Organic curved contour for white content sheet matching design drawing */
+@media (min-width: 768px) {
+  .curved-sheet-top {
+    clip-path: url(#curved-sheet-clip);
+    -webkit-clip-path: url(#curved-sheet-clip);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────
+   QUANTIX OFFICIAL PHYSICAL MEMBER CARD (CR80 SPECIFICATION)
+   Exact replicate of kit/card-template.html & kit/cards/
+   ───────────────────────────────────────────────────────────── */
+.qc-stage {
+  position: relative;
+  width: 340px;
+  height: 214px;
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+}
+
+.qc-flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transform-origin: center center;
+  -webkit-transform-origin: center center;
+  transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.qc-card-face {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  width: 340px !important;
+  height: 214px !important;
+  overflow: hidden;
+  border-radius: 10px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  transform-style: preserve-3d !important;
+  -webkit-transform-style: preserve-3d !important;
+}
+
+.qc-card-face.qc-front {
+  transform: rotateY(0deg);
+  -webkit-transform: rotateY(0deg);
+  z-index: 2;
+}
+
+.qc-card-face.qc-back {
+  transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  z-index: 1;
+}
+
+.qc-card-front {
+  background: #05060c;
+  color: #f5f5f4;
+}
+
+.qc-card-front .qc-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.28;
+  background: #dc2626;
+  right: -70px;
+  top: -70px;
+  pointer-events: none;
+}
+
+.qc-card-front .qc-wm {
+  position: absolute;
+  right: 34px;
+  top: 50%;
+  transform: translateY(-52%);
+  width: 150px;
+  opacity: 0.09;
+  pointer-events: none;
+  user-select: none;
+}
+
+.qc-card-front .qc-frame {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.qc-fpad {
+  position: absolute;
+  inset: 0;
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+}
+
+.qc-fhead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.qc-fhead img {
+  width: 40px;
+  height: auto;
+}
+
+.qc-fhead .qc-club {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d6d3d1;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.qc-fhead .qc-chip {
+  margin-left: auto;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #fca5a5;
+  white-space: nowrap;
+}
+
+.qc-fname {
+  margin-top: auto;
+  text-align: left;
+}
+
+.qc-fname .qc-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 17px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+}
+
+.qc-fname .qc-line {
+  margin-top: 4px;
+  border-bottom: 1.5px solid rgba(255, 255, 255, 0.75);
+}
+
+.qc-fmeta {
+  display: flex;
+  margin-top: 9px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 800;
+  text-align: left;
+}
+
+.qc-ffoot {
+  margin-top: 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: left;
+}
+
+.qc-ffoot .qc-i {
+  color: #dc2626;
+}
+
+/* Card Back */
+.qc-card-back {
+  background: #07080f;
+  color: #f5f5f4;
+}
+
+.qc-card-back .qc-glow {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 999px;
+  filter: blur(70px);
+  opacity: 0.28;
+  background: #db2777;
+  left: -80px;
+  bottom: -80px;
+  pointer-events: none;
+}
+
+.qc-card-back .qc-frame {
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(219, 39, 119, 0.4);
+  border-radius: 6px;
+  pointer-events: none;
+}
+
+.qc-bpad {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.qc-bpad .qc-bemblem {
+  width: 74px;
+  height: auto;
+}
+
+.qc-bmotto {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #ffffff;
+  text-align: center;
+}
+
+.qc-bmotto .qc-dot {
+  color: #dc2626;
+}
+
+.qc-btag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 6.5px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #a8a29e;
+  text-align: center;
+}
+
+/* Print Isolation for Physical Pass Printing */
+@media print {
+  body * {
+    visibility: hidden !important;
+  }
+  #printableMemberCard,
+  #printableMemberCard * {
+    visibility: visible !important;
+  }
+  #printableMemberCard {
+    position: fixed !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) scale(1.6) !important;
+    transform-origin: center !important;
+    box-shadow: none !important;
+  }
+}
