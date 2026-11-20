@@ -89,6 +89,12 @@ export default function QuantumHaloExperience() {
       return Math.min(10.2, 8.8 + (aspect - 1.0) * 0.9); // Desktop widescreen
     };
 
+    const computeHaloScale = (w) => {
+      if (w < 640) return 0.65;       // Scaled down by 35% on mobile for clean typographic headroom
+      if (w < 1024) return 0.85;      // Tablet balanced scale
+      return 1.0;                     // Full scale on desktop
+    };
+
     const camera = new THREE.PerspectiveCamera(40, getWidth() / getHeight(), 0.1, 100);
     camera.position.set(0, 0, computeCameraZ(getWidth(), getHeight()));
 
@@ -97,8 +103,21 @@ export default function QuantumHaloExperience() {
       antialias: true,
       powerPreference: 'high-performance',
     });
+    // ── BLACK FLASH FIX ──
+    // Set a clear color matching the page gradient so the canvas
+    // NEVER shows raw black during fast scroll repaints.
+    // setClearAlpha(0) keeps the canvas transparent under normal
+    // compositing, but the CSS background-color acts as the
+    // ultimate fallback when the compositor drops frames.
+    renderer.setClearColor(new THREE.Color('#0433a8'), 0);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     renderer.setSize(getWidth(), getHeight());
+    // CSS safety net: if the GPU frame is late the browser paints
+    // the element's own background — match it to the page.
+    renderer.domElement.style.background = '#0433a8';
+    // Promote to its own compositor layer so the browser never
+    // tears or drops this surface during fast scrolling.
+    renderer.domElement.style.willChange = 'transform';
     container.appendChild(renderer.domElement);
 
     // ── LIGHTING ──
@@ -115,6 +134,7 @@ export default function QuantumHaloExperience() {
 
     // ── ROOT HALO GROUP (CENTERED IN VIEWPORT) ──
     const rootHaloGroup = new THREE.Group();
+    rootHaloGroup.scale.setScalar(computeHaloScale(getWidth()));
     scene.add(rootHaloGroup);
 
     // ── 1. PRIMARY THICK GLOWING HALO RING (MORPHER) ──
@@ -226,7 +246,6 @@ export default function QuantumHaloExperience() {
       { id: 'research', color: new THREE.Color('#bef264') },  // Softer Lime transition
       { id: 'tracks', color: new THREE.Color('#0052ff') },    // Electric Royal Blue — brand shift
       { id: 'team', color: new THREE.Color('#06339e') },      // Deep Royal Blue — gravitas
-      { id: 'pass', color: new THREE.Color('#06339e') },      // Deep Blue — subtle behind white sheet
     ];
 
     const currentHaloColor = new THREE.Color('#a3ff00');
@@ -319,6 +338,7 @@ export default function QuantumHaloExperience() {
       camera.aspect = w / h;
       camera.position.z = computeCameraZ(w, h);
       camera.updateProjectionMatrix();
+      rootHaloGroup.scale.setScalar(computeHaloScale(w));
       renderer.setSize(w, h);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     };
@@ -425,6 +445,7 @@ export default function QuantumHaloExperience() {
     <div
       ref={containerRef}
       className="w-full h-full pointer-events-none select-none flex items-center justify-center"
+      style={{ background: '#0433a8' }}
       aria-hidden="true"
     />
   );

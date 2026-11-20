@@ -82,9 +82,25 @@ export default function Hero({ onOpenJoinModal }) {
   return (
     <section id="hero" className="relative pt-[60px] sm:pt-[84px] pb-12 sm:pb-16 px-4 sm:px-8 max-w-7xl mx-auto flex flex-col justify-center overflow-visible">
       {/* 1. Main Huge Typography & Persistent Spin Qubit */}
-      <div className="relative z-10 my-6 sm:my-12 text-center">
+      <div className="relative z-10 my-4 sm:my-8 text-center">
+        {/* Institution Affiliation & Collaboration */}
+        <div className="mb-8 sm:mb-10 max-w-2xl mx-auto space-y-2 text-center">
+          <div className="text-white/95 text-base sm:text-lg font-semibold tracking-wide">
+            Shridevi Institute of Engineering and Technology, Tumkur.
+          </div>
+          <div className="text-white/90 text-sm sm:text-base font-medium">
+            Dept. of AI &amp; DS <span className="text-lime-400 italic font-serif text-lg mx-1.5 select-none">&amp;</span> Dept. of AI &amp; ML
+          </div>
+          <div className="text-white/70 text-xs uppercase tracking-widest pt-2">
+            In collaboration with
+          </div>
+          <div className="text-lime-400 font-display font-black text-2xl sm:text-3xl tracking-wide drop-shadow-sm">
+            AI Syntax Surge
+          </div>
+        </div>
+
         {/* Curving Neon Lime Doodle Arrow: Top Right */}
-        <div className="absolute -top-10 right-4 sm:right-16 lg:right-28 hidden sm:block pointer-events-none z-20">
+        <div className="absolute top-24 right-4 sm:right-16 lg:right-28 hidden sm:block pointer-events-none z-20">
           <TopLimeArrow className="w-24 h-24 sm:w-32 sm:h-32 rotate-6" />
         </div>
 
@@ -110,30 +126,14 @@ export default function Hero({ onOpenJoinModal }) {
             REALMS
           </div>
 
-          {/* Circular Rotating Lime Stamp Badge on the Right */}
-          <div className="absolute -bottom-8 -right-2 sm:-right-6 md:-right-10 z-30 pointer-events-auto">
+          {/* Circular Rotating Lime Stamp Badge on the Right (hidden on mobile to prevent disturbing typography) */}
+          <div className="hidden sm:block absolute -bottom-8 -right-2 sm:-right-6 md:-right-10 z-30 pointer-events-auto">
             <CircularLimeBadge />
           </div>
         </div>
 
-        {/* Institution Affiliation & Collaboration wrapped to lines */}
-        <div className="mt-12 max-w-2xl mx-auto space-y-2 text-center">
-          <div className="text-white/95 text-base sm:text-lg font-semibold tracking-wide">
-            Shridevi Institute of Engineering and Technology, Tumkur.
-          </div>
-          <div className="text-white/90 text-sm sm:text-base font-medium">
-            Dept. of AI &amp; DS <span className="text-lime-400 italic font-serif text-lg mx-1.5 select-none">&amp;</span> Dept. of AI &amp; ML
-          </div>
-          <div className="text-white/70 text-xs uppercase tracking-widest pt-2">
-            In collaboration with
-          </div>
-          <div className="text-lime-400 font-display font-black text-2xl sm:text-3xl tracking-wide drop-shadow-sm">
-            AI Syntax Surge
-          </div>
-        </div>
-
         {/* Mission Statement */}
-        <div className="mt-12 sm:mt-16 max-w-3xl mx-auto text-center space-y-4 px-4">
+        <div className="mt-10 sm:mt-14 max-w-3xl mx-auto text-center space-y-4 px-4">
           {/* Mission Tagline */}
           <h2 className="font-display font-black text-2xl sm:text-3xl md:text-4xl text-white tracking-tight uppercase leading-snug">
             “Unlocking Quantum Realms <br className="hidden sm:inline" />

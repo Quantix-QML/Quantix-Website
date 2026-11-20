@@ -14,12 +14,14 @@ export default function Footer({ onOpenJoinModal }) {
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
         <div>
           <div className="flex items-center gap-2 mb-2">
-            <span className="px-3 py-1 rounded-full bg-white text-electric-600 font-display font-black text-sm tracking-tight">
-              QUANTIX
-            </span>
-            <span className="px-2.5 py-0.5 rounded-full border border-white/60 text-white font-mono text-micro font-bold uppercase">
-              CLUB
-            </span>
+            <div className="px-3 py-1 rounded-full bg-white text-electric-600 font-display font-black text-sm tracking-tight flex items-center gap-2 shadow-sm">
+              <img
+                src="/QUANTIX-emblem.png"
+                alt="Quantix Logo"
+                className="w-4 h-4 object-contain"
+              />
+              <span>QUANTIX</span>
+            </div>
           </div>
           <div className="text-white/70 text-micro mt-2">
             Quantum Computing Club &bull; Shridevi Institute of Engineering &amp; Technology, Tumakuru
@@ -30,17 +32,17 @@ export default function Footer({ onOpenJoinModal }) {
         </div>
 
         <div className="flex flex-wrap items-center gap-6 text-micro">
-          <a href="#research" className="text-white/80 hover:text-lime-400 transition-colors">
+          <a href="#/about" className="text-white/80 hover:text-lime-400 transition-colors">
+            About Club
+          </a>
+          <a href="#/research" className="text-white/80 hover:text-lime-400 transition-colors">
             Research
           </a>
-          <a href="#tracks" className="text-white/80 hover:text-lime-400 transition-colors">
+          <a href="#/tracks" className="text-white/80 hover:text-lime-400 transition-colors">
             Tracks
           </a>
-          <a href="#team" className="text-white/80 hover:text-lime-400 transition-colors">
+          <a href="#/team" className="text-white/80 hover:text-lime-400 transition-colors">
             Team
-          </a>
-          <a href="#pass" className="text-white/80 hover:text-lime-400 transition-colors">
-            Member Pass
           </a>
           <a
             href="https://github.com/Quantix-QML/Quantix-Website"

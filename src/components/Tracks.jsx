@@ -70,7 +70,7 @@ export default function Tracks({ onOpenJoinModal }) {
           return (
             <div
               key={track.number}
-              className="relative p-6 sm:p-8 rounded-3xl bg-[#06339e]/90 border-2 border-white/40 hover:border-lime-400 transition-all duration-300 shadow-2xl backdrop-blur-2xl group overflow-hidden flex flex-col justify-between"
+              className="relative p-6 sm:p-8 rounded-xl bg-[#06339e]/90 border-2 border-white/40 hover:border-lime-400 transition-all duration-300 shadow-2xl backdrop-blur-2xl group overflow-hidden flex flex-col justify-between"
             >
               {/* Blueprint Corner Crosshair Accents (+) */}
               <span className="absolute top-3 left-3 font-mono text-nano text-white/40 select-none">+</span>
@@ -101,7 +101,7 @@ export default function Tracks({ onOpenJoinModal }) {
                 </p>
 
                 {/* Topics list */}
-                <div className="mt-5 space-y-2.5 bg-white/5 border border-white/15 p-4 rounded-2xl font-mono text-xs text-white/90">
+                <div className="mt-5 space-y-2.5 bg-white/5 border border-white/15 p-4 rounded-lg font-mono text-xs text-white/90">
                   {track.topics.map((topic, idx) => (
                     <div key={idx} className="flex items-start gap-2.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-lime-400 mt-1.5 shrink-0" />

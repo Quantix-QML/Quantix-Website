@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExternalLink } from 'lucide-react';
 
 function GithubIcon({ className = "w-3.5 h-3.5" }) {
@@ -9,50 +9,136 @@ function GithubIcon({ className = "w-3.5 h-3.5" }) {
   );
 }
 
+const facultyMentor = {
+  name: 'Dr. Girish L',
+  chip: 'FACULTY MENTOR',
+  code: 'QX-FACULTY-01',
+};
+
 const foundingMembers = [
   {
     name: 'Dipankar Chettri',
-    username: 'dipankarchettri',
+    chip: 'STUDENT LEAD',
+    code: 'QX-PRIME-01',
     github: 'https://github.com/dipankarchettri',
-    icon: '👾',
-    gradient: 'from-blue-500 to-indigo-700',
   },
   {
     name: 'Preetam',
-    username: 'Preetam-R',
+    chip: 'FELLOW',
+    code: 'QX-PRIME-02',
     github: 'https://github.com/Preetam-R',
-    icon: '⚛️',
-    gradient: 'from-lime-400 to-emerald-600',
   },
   {
     name: 'Gouri',
-    username: 'gouri2408',
+    chip: 'FELLOW',
+    code: 'QX-PRIME-03',
     github: 'https://github.com/gouri2408',
-    icon: '🪐',
-    gradient: 'from-sky-400 to-blue-600',
   },
   {
     name: 'Khushi',
-    username: 'Mskhushi21',
+    chip: 'FELLOW',
+    code: 'QX-PRIME-04',
     github: 'https://github.com/Mskhushi21',
-    icon: '🔮',
-    gradient: 'from-lime-300 to-emerald-500',
   },
   {
     name: 'Prarthana',
-    username: 'prarthanapkhasnis2-sketch',
+    chip: 'FELLOW',
+    code: 'QX-PRIME-05',
     github: 'https://github.com/prarthanapkhasnis2-sketch',
-    icon: '🧬',
-    gradient: 'from-teal-400 to-emerald-600',
   },
   {
     name: 'Milind Nayak',
-    username: 'nayakmilind',
+    chip: 'FELLOW',
+    code: 'QX-PRIME-06',
     github: 'https://github.com/nayakmilind',
-    icon: '🚀',
-    gradient: 'from-blue-400 to-indigo-600',
   },
 ];
+
+function MemberBadgeCard({ member }) {
+  const [isFlipped, setIsFlipped] = useState(false);
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="w-full flex justify-center py-2">
+        <div className="scale-[0.88] xs:scale-95 sm:scale-100 origin-center transition-transform">
+          {/* Rigid 340x214 Stage (Exact Physical Spec Card from Member Pass) */}
+          <div
+            className="qc-stage select-none cursor-pointer"
+            onClick={() => setIsFlipped(!isFlipped)}
+            title={`Click to flip ${member.name}'s card`}
+          >
+            <div
+              className="qc-flipper group"
+              style={{
+                transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
+              }}
+            >
+              {/* ── CARD FRONT (EXACT PHYSICAL SPEC BADGE) ── */}
+              <div className="qc-card-face qc-front qc-card-front shadow-2xl">
+                <div className="qc-glow" />
+                <img className="qc-wm" src="/QUANTIX-emblem.png" alt="" />
+                <div className="qc-frame" />
+
+                <div className="qc-fpad">
+                  <div className="qc-fhead">
+                    <img src="/QUANTIX-emblem.png" alt="QUANTIX" />
+                    <div className="qc-club">
+                      Quantum Computing Club<br />SIET · Tumakuru
+                    </div>
+                    <span className="qc-chip">{member.chip}</span>
+                  </div>
+
+                  <div className="qc-fname">
+                    <div className="qc-val">{member.name}</div>
+                    <div className="qc-line" />
+                  </div>
+
+                  <div className="qc-fmeta">
+                    <span>{member.code}</span>
+                  </div>
+
+                  <div className="qc-ffoot">
+                    Quant<span className="qc-i">i</span>X
+                  </div>
+                </div>
+              </div>
+
+              {/* ── CARD BACK ── */}
+              <div className="qc-card-face qc-back qc-card-back shadow-2xl">
+                <div className="qc-glow" />
+                <div className="qc-frame" />
+                <div className="qc-bpad">
+                  <img className="qc-bemblem" src="/QUANTIX-emblem.png" alt="QUANTIX" />
+                  <div className="qc-bmotto">
+                    Build with knowledge <span className="qc-dot">•</span> Grow with people
+                  </div>
+                  <div className="qc-btag">For a quantum tomorrow</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Under-Card GitHub Profile Link (if present) */}
+      {member.github && (
+        <div className="mt-2 font-mono text-[11px]">
+          <a
+            href={member.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white/60 hover:text-lime-400 flex items-center gap-1.5 transition-colors"
+            title={`View ${member.name}'s GitHub`}
+          >
+            <GithubIcon className="w-3.5 h-3.5" />
+            <span>GitHub Profile</span>
+            <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+          </a>
+        </div>
+      )}
+    </div>
+  );
+}
 
 export default function Team() {
   return (
@@ -72,43 +158,22 @@ export default function Team() {
         </div>
       </div>
 
-      {/* ── SOLE LEADER SPOTLIGHT: DR. GIRISH L (BLUEPRINT HIGH-CONTRAST CARD) ── */}
-      <div className="mb-14 relative p-6 sm:p-10 rounded-3xl bg-[#06339e]/90 border-2 border-white/40 hover:border-lime-400 transition-all duration-300 shadow-2xl backdrop-blur-2xl group overflow-hidden">
-        {/* Blueprint Corner Crosshair Accents (+) */}
-        <span className="absolute top-3 left-3 font-mono text-nano text-white/40 select-none">+</span>
-        <span className="absolute top-3 right-3 font-mono text-nano text-white/40 select-none">+</span>
-        <span className="absolute bottom-3 left-3 font-mono text-nano text-white/40 select-none">+</span>
-        <span className="absolute bottom-3 right-3 font-mono text-nano text-white/40 select-none">+</span>
+      {/* ── FACULTY MENTOR CARD ── */}
+      <div className="mb-14">
+        <div className="flex items-center gap-2.5 mb-6 pb-3 border-b border-white/15">
+          <span className="w-2.5 h-2.5 rounded-full bg-lime-400" />
+          <h4 className="font-display font-black text-xl sm:text-2xl text-white uppercase tracking-tight">
+            Faculty Mentor
+          </h4>
+        </div>
 
-        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6 sm:gap-8">
-          <div className="w-28 h-28 sm:w-36 sm:h-36 rounded-3xl overflow-hidden bg-slate-900 border-2 border-white/60 shadow-xl shrink-0 relative group-hover:border-lime-400 transition-colors">
-            <img
-              src="/dr-girish.jpeg"
-              alt="Dr. Girish L"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-lime-400 border-2 border-[#06339e]" />
-          </div>
-
-          <div className="text-center sm:text-left space-y-2">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-lime-400 text-ink-950 font-mono text-xs font-black uppercase tracking-wider shadow-sm">
-              Faculty Mentor &amp; Leadership
-            </div>
-            <h3 className="font-display font-black text-2xl sm:text-4xl text-white group-hover:text-lime-400 transition-colors tracking-tight">
-              Dr. Girish L
-            </h3>
-            <p className="font-mono text-xs sm:text-sm text-lime-400/90 font-bold">
-              Shridevi Institute of Engineering &amp; Technology, Tumakuru
-            </p>
-            <p className="text-white/80 text-sm sm:text-base leading-relaxed max-w-2xl pt-1 font-normal">
-              Academic guide directing research methodology, quantum computing education, laboratory infrastructure, and institutional research collaborations across Dept. of AI &amp; DS and Dept. of AI &amp; ML.
-            </p>
-          </div>
+        <div className="flex justify-center">
+          <MemberBadgeCard member={facultyMentor} />
         </div>
       </div>
 
-      {/* ── FOUNDING MEMBER COHORT: FROSTED GLASSMORPHED CARDS WITH GITHUB PROFILES ── */}
-      <div className="pt-4">
+      {/* ── FOUNDING MEMBER COHORT: OFFICIAL 3D MEMBER PASS BADGES ── */}
+      <div className="pt-2">
         <div className="flex items-center justify-between mb-8 pb-4 border-b border-white/15">
           <div className="flex items-center gap-2.5">
             <span className="w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse" />
@@ -127,44 +192,10 @@ export default function Team() {
           </a>
         </div>
 
-        {/* 6 Glassmorphic Member Cards */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 xl:grid-cols-6 gap-4 sm:gap-5">
+        {/* 6 Individual 3D Interactive Member Pass Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 justify-items-center">
           {foundingMembers.map((member, idx) => (
-            <div
-              key={idx}
-              className="backdrop-blur-xl bg-white/15 border-2 border-white/40 hover:border-lime-400 p-5 rounded-3xl shadow-xl flex flex-col items-center text-center transition-all duration-300 group hover:-translate-y-1 hover:bg-white/25"
-            >
-              {/* Cyber/Quantum Avatar Ring */}
-              <div
-                className={`w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr ${member.gradient} p-0.5 shadow-lg flex items-center justify-center relative overflow-hidden group-hover:scale-105 transition-transform`}
-              >
-                <div className="w-full h-full rounded-2xl bg-[#031338] flex items-center justify-center text-2xl select-none">
-                  {member.icon}
-                </div>
-                <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-lime-400 border-2 border-[#031338]" />
-              </div>
-
-              <span className="font-display font-extrabold text-sm sm:text-base mt-3.5 tracking-wide text-white group-hover:text-lime-400 transition-colors leading-tight line-clamp-1">
-                {member.name}
-              </span>
-
-              <span className="font-mono text-nano text-white/60 mt-1 uppercase tracking-wider font-semibold">
-                Founding Member
-              </span>
-
-              {/* GitHub Profile Link Pill */}
-              <a
-                href={member.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3.5 w-full py-1.5 px-2.5 rounded-full bg-white/10 hover:bg-lime-400 hover:text-ink-950 border border-white/20 hover:border-lime-400 text-white font-mono text-nano flex items-center justify-center gap-1.5 transition-all shadow-sm group/btn"
-                title={`View ${member.name}'s GitHub profile`}
-              >
-                <GithubIcon className="w-3 h-3 shrink-0" />
-                <span className="truncate">@{member.username}</span>
-                <ExternalLink className="w-2.5 h-2.5 shrink-0 opacity-60 group-hover/btn:opacity-100" />
-              </a>
-            </div>
+            <MemberBadgeCard key={idx} member={member} />
           ))}
         </div>
       </div>
