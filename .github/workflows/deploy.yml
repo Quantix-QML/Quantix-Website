@@ -1,21 +1,26 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Only trigger deploy from the main branch after CI passes
   push:
     branches:
       - main
   workflow_dispatch:
 
+# Minimal permissions: only Pages gets write access
 permissions:
   contents: read
   pages: write
   id-token: write
 
+# Prevent concurrent deploys so a mid-deploy push doesn't corrupt the live site.
+# "cancel-in-progress: false" queues rather than cancels — deliberate for safety.
 concurrency:
-  group: 'pages'
+  group: pages
   cancel-in-progress: false
 
 jobs:
+  # ── BUILD ──────────────────────────────────────────────────────────────────
   build:
     name: Build site
     runs-on: ubuntu-latest
@@ -27,22 +32,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: 'npm'
+          cache: npm
 
       - name: Install dependencies
         run: npm ci
 
+      # Configure the Pages environment BEFORE the build so any injected
+      # base URL env vars are available during the Vite build step.
+      - name: Configure GitHub Pages environment
+        uses: actions/configure-pages@v5
+
       - name: Build site
         run: npm run build
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: './dist'
+          path: ./dist
 
+  # ── DEPLOY ─────────────────────────────────────────────────────────────────
   deploy:
     name: Deploy to GitHub Pages
     environment:
