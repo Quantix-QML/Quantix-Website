@@ -76,12 +76,12 @@ function MemberBadgeCard({ member }) {
               {/* ── CARD FRONT (EXACT PHYSICAL SPEC BADGE) ── */}
               <div className="qc-card-face qc-front qc-card-front shadow-2xl">
                 <div className="qc-glow" />
-                <img className="qc-wm" src="/QUANTIX-emblem.png" alt="" />
+                <img className="qc-wm" src="./QUANTIX-emblem.png" alt="" />
                 <div className="qc-frame" />
 
                 <div className="qc-fpad">
                   <div className="qc-fhead">
-                    <img src="/QUANTIX-emblem.png" alt="QUANTIX" />
+                    <img src="./QUANTIX-emblem.png" alt="QUANTIX" />
                     <div className="qc-club">
                       Quantum Computing Club<br />SIET · Tumakuru
                     </div>
@@ -108,7 +108,7 @@ function MemberBadgeCard({ member }) {
                 <div className="qc-glow" />
                 <div className="qc-frame" />
                 <div className="qc-bpad">
-                  <img className="qc-bemblem" src="/QUANTIX-emblem.png" alt="QUANTIX" />
+                  <img className="qc-bemblem" src="./QUANTIX-emblem.png" alt="QUANTIX" />
                   <div className="qc-bmotto">
                     Build with knowledge <span className="qc-dot">•</span> Grow with people
                   </div>

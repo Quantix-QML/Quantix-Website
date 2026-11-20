@@ -69,7 +69,7 @@ function CircularLimeBadge() {
       {/* Center Quantix Logo */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
         <img
-          src="/QUANTIX-emblem.png"
+          src="./QUANTIX-emblem.png"
           alt="Quantix Logo"
           className="w-11 h-11 sm:w-13 sm:h-13 object-contain group-hover:scale-110 transition-transform duration-300 drop-shadow-sm"
         />

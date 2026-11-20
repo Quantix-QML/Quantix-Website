@@ -121,7 +121,7 @@ export default function MembershipModal({ isOpen, onClose }) {
             {/* Header / Institutional Branding */}
             <div className="flex items-center gap-3 mb-4 pb-4 border-b border-white/15">
               <img
-                src="/QUANTIX-emblem.png"
+                src="./QUANTIX-emblem.png"
                 alt="Quantix"
                 className="w-10 h-10 object-contain drop-shadow"
               />

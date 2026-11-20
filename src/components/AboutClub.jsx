@@ -345,7 +345,7 @@ export default function AboutClub({ onOpenJoinModal }) {
           {/* Faculty Mentor */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/15 flex flex-col sm:flex-row gap-5 items-center sm:items-start text-center sm:text-left">
             <img 
-              src="/dr-girish.jpeg" 
+              src="./dr-girish.jpeg" 
               alt="Dr. Girish L" 
               className="w-24 h-24 rounded-full object-cover border-2 border-lime-400/80 shadow-md shrink-0" 
             />
@@ -366,7 +366,7 @@ export default function AboutClub({ onOpenJoinModal }) {
           {/* Student Lead */}
           <div className="p-6 rounded-xl bg-white/5 border border-white/15 flex flex-col sm:flex-row gap-5 items-center sm:items-start text-center sm:text-left">
             <img 
-              src="/dipankar.jpeg" 
+              src="./dipankar.jpeg" 
               alt="Dipankar Chettri" 
               className="w-24 h-24 rounded-full object-cover border-2 border-lime-400/80 shadow-md shrink-0" 
             />

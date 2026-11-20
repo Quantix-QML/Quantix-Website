@@ -12,7 +12,7 @@ export default function Navbar({ onOpenJoinModal, currentRoute = 'home' }) {
         <a href="#/" className="flex items-center gap-2 group select-none shrink-0" aria-label="Quantix Home">
           <div className="px-3.5 py-1.5 rounded-full bg-white text-electric-600 font-display font-black text-sm tracking-tight shadow-sm flex items-center gap-2 hover:bg-slate-50 transition-colors">
             <img
-              src="/QUANTIX-emblem.png"
+              src="./QUANTIX-emblem.png"
               alt="Quantix Logo"
               className="w-5 h-5 object-contain group-hover:scale-105 transition-transform"
             />

@@ -16,7 +16,7 @@ export default function Footer({ onOpenJoinModal }) {
           <div className="flex items-center gap-2 mb-2">
             <div className="px-3 py-1 rounded-full bg-white text-electric-600 font-display font-black text-sm tracking-tight flex items-center gap-2 shadow-sm">
               <img
-                src="/QUANTIX-emblem.png"
+                src="./QUANTIX-emblem.png"
                 alt="Quantix Logo"
                 className="w-4 h-4 object-contain"
               />
